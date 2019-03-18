@@ -64,11 +64,11 @@ initSearchmenu('scbar', '');
       <a href=""><img src="/upload/{{ $user_data->face }}" /></a>
      </div> 
      <h2 class="mt">{{ $user_data->nickname or '某某' }}</h2> 
-        @if (!$follows->isEmpty())
+        @if(!$follows->isEmpty())
         <p class="follow_us">
           <a href="" id="a_friend_li_129412"  class="xi2 new1">已关注</a>
         </p>
-        @elseif ($id == session('homeuser')['id'])
+        @elseif($id == session('homeuser')['id'])
         <p class="follow_us">
         <a href="/users/follows/{{$id}}" id="a_friend_li_446737"  class="xi2 new1">我的关注</a>
         <a href="/users/fans/{{$id}}" id="a_sendpm_446737" title="我的粉丝" class="old1">粉丝</a>
@@ -85,27 +85,30 @@ initSearchmenu('scbar', '');
    <div class="wp cl"> 
     <div class="space_nav cl"> 
      <ul class="tb_1 cl" id="lanmu"> 
-         @if($index == 0)  
+      @if($index == 0)  
+          
       <li class="a"><a href="/users/index/{{$id}}"><img src="/home/picture/space_profile.png" class="vm" />TA的资料</a></li> 
+          @if($id == session('homeuser')['id'])
       <li><a href="/users/topics/{{$id}}"><img src="/home/picture/space_thread.png" class="vm" />我的帖子</a></li>
       <li><a href="/users/collection/{{$id}}"><img src="/home/picture/space_thread.png" class="vm" />我的收藏</a></li> 
       <li><a href="/users/follows/{{$id}}"><img src="/home/picture/space_thread.png" class="vm" />我的关注</a></li> 
-         @elseif($index == 1)  
+           @endif
+      @elseif($index == 1)  
       <li><a href="/users/index/{{$id}}"><img src="/home/picture/space_profile.png" class="vm" />TA的资料</a></li> 
       <li class="a"><a href="/users/topics/{{$id}}"><img src="/home/picture/space_thread.png" class="vm" />我的帖子</a></li>
       <li><a href="/users/collection/{{$id}}"><img src="/home/picture/space_thread.png" class="vm" />我的收藏</a></li> 
       <li><a href="/users/follows/{{$id}}"><img src="/home/picture/space_thread.png" class="vm" />我的关注</a></li> 
-         @elseif($index == 2) 
+      @elseif($index == 2) 
       <li><a href="/users/index/{{$id}}"><img src="/home/picture/space_profile.png" class="vm" />TA的资料</a></li> 
       <li><a href="/users/topics/{{$id}}"><img src="/home/picture/space_thread.png" class="vm" />我的帖子</a></li>
       <li class="a"><a href="/users/collection/{{$id}}"><img src="/home/picture/space_thread.png" class="vm" />我的收藏</a></li> 
       <li><a href="/users/follows/{{$id}}"><img src="/home/picture/space_thread.png" class="vm" />我的关注</a></li>        
-         @elseif($index == 3)
+      @elseif($index == 3)
       <li><a href="/users/index/{{$id}}"><img src="/home/picture/space_profile.png" class="vm" />TA的资料</a></li> 
       <li><a href="/users/topics/{{$id}}"><img src="/home/picture/space_thread.png" class="vm" />我的帖子</a></li>
       <li><a href="/users/collection/{{$id}}"><img src="/home/picture/space_thread.png" class="vm" />我的收藏</a></li> 
       <li class="a"><a href="/users/follows/{{$id}}"><img src="/home/picture/space_thread.png" class="vm" />我的关注</a></li>
-         @endif  
+      @endif  
 
      </ul> 
     </div> 

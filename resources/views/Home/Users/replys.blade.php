@@ -35,7 +35,7 @@
     </a>
     </td>
     <th>
-    <a href="/topics/{{ $vv->tid }}" target="_blank">{{ $vv->ttitle }}</a>
+    <a href="/topics/{{ $vv->id }}" target="_blank">{{ $vv->ttitle }}</a>
     <img src="/home/picture/common.gif" alt="附件" align="absmiddle">
     </th>
     @foreach ($vv['cate'] as $kkk=>$vvv)

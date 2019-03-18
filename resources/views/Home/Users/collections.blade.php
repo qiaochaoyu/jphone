@@ -54,7 +54,7 @@
   <td class="by">
     <!-- <p style="width: 6px;height: 30px; border: 1px solid #ddd;"> -->
       <div style="width: 60px;height: 20px; border: 1px solid #ddd;margin-left: 50px;padding: 6px 6px;text-align: center;line-height: 20px;background-color: #FFCC99;border-radius: 8px;">
-        <a  href="/users/remove/{{ $v->id }}"><font  color="#555"><b>取消收藏</b></font></a>
+        <a  href="javascript:;" onclick="remove({{ $v->id }})"><font  color="#555"><b>取消收藏</b></font></a>
       </div>
     <!-- </p> -->
   </td>
@@ -88,4 +88,14 @@ window.location.href = 'home.php?mod=space&uid=450096&do=thread&view=me&order=da
 </div>
 </div>
 </div> 
+
+<script type="text/javascript">
+    function remove(id)
+    {
+            if(confirm("你确定要取消收藏吗？")){
+                
+                window.location.href = "/users/remove/".id;
+            }
+    }
+</script>
 @endsection

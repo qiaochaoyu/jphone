@@ -80,12 +80,7 @@
                             <!-- <label for="picture" class="error" generated="true" style="display:none"></label> -->
                         </div>
                     </div>
-                    <div class="mws-form-row"> 
-			       		<label class="mws-form-label">积分</label> 
-			       		<div class="mws-form-item"> 
-			        		<input type="number" name="ascore" class="small" value="{{ old('ascore') }}"/> 
-			       		</div> 
-			      	</div> 
+                    
 			    </div> 
 			    <div class="mws-button-row"> 
 				    <font style="vertical-align: inherit;"> <font style="vertical-align: inherit;"> <input type="submit" value="添加" class="btn btn-success" /> </font> </font> 
