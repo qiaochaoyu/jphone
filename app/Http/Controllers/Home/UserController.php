@@ -249,19 +249,21 @@ class UserController extends Controller
     }
 
     /**
-     * 
+     * 修改个人资料
      */
     public function zlxg(Request $request)
     {
-
+        // 获取session的登录信息中的id
         $value = $request->session()->get('homeuser')->id;
+        // 通过id find查找
         $data = Users::find($value);
         // dump($data);
+        // 加载视图 分配数据
         return view('Home.Users.zlxg',['data'=>$data]);
     }
 
     /**
-     * 
+     * 修改资料验证
      */
     public function save(Request $request)
     {
@@ -302,6 +304,7 @@ class UserController extends Controller
         }
         // 保存到数据库
         $res1 = $data->save();
+        // 把修改完的信息存入session
         session(['homeuser'=>$data]);
         if ($res1) {
             return redirect('/home/users/update')->with('success','修改成功');

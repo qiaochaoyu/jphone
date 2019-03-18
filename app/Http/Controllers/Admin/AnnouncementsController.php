@@ -11,7 +11,7 @@ class AnnouncementsController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * 显示公告
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -29,7 +29,7 @@ class AnnouncementsController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * 加载添加页面
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -40,7 +40,7 @@ class AnnouncementsController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * 添加公告
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -59,14 +59,14 @@ class AnnouncementsController extends Controller
         //判断是否添加成功
         if ($res) {
             return redirect('admin/announcements')->with('success','添加成功');
-        }else{
+        } else {
             return back()->with('error','添加失败');
         }
     }
 
     /**
      * Display the specified resource.
-     *
+     * 查看公告
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -74,13 +74,14 @@ class AnnouncementsController extends Controller
     {
         // 获取数据
         $data = Announcements::where('id',$id)->first();
+        // 加载修改页面视图  分配参数
         return view('Admin.Announcements.show',['data'=>$data]);
 
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
+     * 加载修改页面
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -88,14 +89,13 @@ class AnnouncementsController extends Controller
     {
         // 接收参数为id的原来数据
         $data = Announcements::find($id);
-
         // 加载修改页面视图  分配参数
         return view('Admin.Announcements.edit',['data'=>$data]);
     }
 
     /**
      * Update the specified resource in storage.
-     *
+     * 修改公告
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -114,14 +114,14 @@ class AnnouncementsController extends Controller
         // 判断是否修改成功
         if ($res) {
             return redirect('admin/announcements')->with('success','修改成功');
-        }else{
+        } else {
             return back()->with('error','修改失败');
         } 
     }
 
     /**
      * Remove the specified resource from storage.
-     *
+     * 删除公告
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -132,7 +132,7 @@ class AnnouncementsController extends Controller
         // 判断是否删除成功
         if ($res) {
             return redirect($_SERVER['HTTP_REFERER'])->with('success','删除成功');
-        }else{
+        } else {
             return redirect($_SERVER['HTTP_REFERER'])->with('error','删除失败');
         }
     }
