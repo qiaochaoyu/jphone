@@ -1,0 +1,205 @@
+﻿.writeLogin-header{
+    width: 100%;
+}
+.writeLogin-header .qr-container{
+    padding-top: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.qr-container .qrText{
+    width: 151px;
+    height: 24px;
+    background: url(../images/dialog.png) no-repeat;
+    font-size: 12px;
+    color: #f7c707;
+    line-height: 20px;
+    text-align: center;
+    margin-right: 10px;
+}
+.qr-container .qrImg{
+    cursor: pointer;
+    width: 38px;
+    height: 39px;
+    position: absolute;
+    right: 39px;
+    top: 36px;
+}
+.qr-container .qrImg img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.main-right .title-container{
+    padding-top:25px;
+    box-sizing: border-box;
+}
+.title-container .title-cover{
+    width: 340px;
+}
+.title-container .title-cover .loginType{
+    width: 170px;
+    height: 37px;
+    border-bottom: 2px solid #e3e3e3;
+    box-sizing: border-box;
+    text-align: center;
+    color: #cdcdcd;
+    font-size: 18px;
+    cursor: pointer;
+}
+.title-container .title-cover .loginType.active{
+    color: #f8d709;
+    border-bottom: 2px solid #f8d709;
+}
+.main-right .main-login-number-content,.main-login-sms-content{
+    width: 100%;
+    padding-top: 40px;
+}
+.main-right .inputState .Forgetpassword{
+    color: #f8d709;
+    font-size: 14px;
+}
+.main-content .main-right .main-login-footer{
+    width: 100%;
+    position: relative;
+}
+.main-login-footer .loginMode{
+    display: inline-block;
+    padding-right: 30px;
+}
+.main-login-footer .loginMode .loginModeImg{
+    width: 28px;
+    height: 28px;
+    padding-right: 7px;
+}
+.main-login-footer .loginMode .loginModeImg img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.main-login-footer .loginMode .loginModeText{
+    line-height: 28px;
+    color: #999999;
+    font-size: 14px;
+}
+.main-login-footer .register{
+    display: block;
+    color: #f8d709;
+    font-size: 14px;
+    position: absolute;
+    right: 0;
+    bottom: 13px;
+}
+.register .registerImg{
+    width: 13px;
+    height: 13px;
+}
+.register .registerImg img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.main-login-footer .register span{
+    padding-left: 7px;
+    line-height: 13px;
+}
+/*.main-login .main-login-sms-content{*/
+    /*width: 100%;*/
+    /*padding-top: 40px;*/
+/*}*/
+.main-login-sms-content .dynamicPassword{
+    padding-bottom: 0;
+}
+.main-login-sms-content .dynamicPassword .dynamicPassword-input{
+    width: 125px;
+    background: none;
+    padding: 12px 10px;
+}
+.dynamicPassword .dynamicPassword-btn{
+    color: #f8d709;
+    font-size: 16px;
+    text-align: center;
+    border:1px solid #f8d709;
+    width: 193px;
+    height: 43px;
+    line-height: 43px;
+    box-sizing: border-box;
+    display: inline-block;
+    cursor: pointer;
+}
+.dynamicPassword .dynamicPassword-disabled{
+    border: 1px solid #ededed;
+    cursor: default;
+    color:#999;
+    background: #ededed;
+}
+.main-right .qrLogin{
+    padding:70px 68px 0 50px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.qrLogin .qrLogin-header{
+    width: 100%;
+}
+.qrLogin-header .qrLogin-title{
+    color: #f5c609;
+    font-size: 24px;
+    text-align: center;
+}
+.qrLogin-header .qrLoginImg{
+    width: 37px;
+    height: 30px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 22px;
+}
+.qrLogin-header .qrLoginImg img{
+    display:block ;
+    width: 100%;
+    height: 100%;
+}
+.qrLogin .main-login-qr-content{
+    width: 100%;
+    padding-top: 40px;
+    box-sizing: border-box;
+}
+.main-login-qr-content .qrCode{
+    text-align: center;
+}
+.qrCode .qrCode-img{
+    width: 197px;
+    height: 197px;
+}
+.qrCode .qrCode-img img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.qrCode .qrCode-text{
+    padding-top: 27px;
+    text-align: center;
+}
+.qrCode .qrCode-footer{
+    padding-top: 30px;
+    text-align: center;
+    color: #bbbbbb;
+    font-size: 16px;
+}
+.qrCode-footer p{
+    padding-bottom: 13px;
+}
+.qrCode-footer span{
+    color: #f6b808;
+}
+.qrCode-footer .qrCode-footer-img{
+    width: 16px;
+    height: 16px;
+}.qrCode-footer .qrCode-footer-img img{
+    display: block;
+    width: 100%;
+    height: 100%;
+ }
+.qrCode-footer .qrScan{
+    background: url(../images/scan.png) no-repeat 51px 4px;
+    padding-left: 30px;
+}

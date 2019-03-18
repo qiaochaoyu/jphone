@@ -1,0 +1,89 @@
+﻿/*==========以下部分是Validform必须的===========*/
+.Validform_checktip{
+	width:158px;
+	display:block;
+	margin-left:8px;
+	line-height:20px;
+	height:40px;
+	overflow:hidden;
+	color:#999;
+	font-size:12px;
+	padding-left:10px;
+}
+.Validform_right{
+	float:left;
+	color:#71b83d;
+	padding-left:20px;
+	line-height:40px;
+	background:url(../images/right.png) no-repeat left center;
+}
+.Validform_warning{
+	float:left;
+	color:#71b83d;
+	padding-left:20px;
+	line-height:40px;
+	background:url(../images/ucenter-ico4.png) no-repeat left center;
+}
+.Validform_wrong{
+	color:#da4b4b;
+	float:left;
+	line-height:40px;
+	padding-left:20px;
+	margin-left:10px;
+	white-space:nowrap;
+	background:url(../images/error.png) no-repeat left center;
+}
+.Validform_loading{
+	padding-left:20px;
+	background:url(../images/onload.gif) no-repeat left center;
+}
+.Validform_error{
+	background:#FFF!important;
+	border:2px solid #da4b4b!important;
+	
+}
+.Validform_warn{
+	background:#FFF!important;
+	border:2px solid #f8a456!important;
+	
+}
+#Validform_msg{color:#7d8289; font: 12px/1.5 tahoma, arial, \5b8b\4f53, sans-serif; width:280px; -webkit-box-shadow:2px 2px 3px #aaa; -moz-box-shadow:2px 2px 3px #aaa; background:#fff; position:absolute; top:0px; right:50px; z-index:99999; display:none;filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#999999');}
+#Validform_msg .iframe{position:absolute; left:0px; top:-1px; z-index:-1;}
+#Validform_msg .Validform_title{line-height:25px; height:25px; text-align:left; font-weight:bold; padding:0 8px; color:#fff; position:relative; background-color:#000;}
+#Validform_msg a.Validform_close:link,#Validform_msg a.Validform_close:visited{line-height:22px; position:absolute; right:8px; top:0px; color:#fff; text-decoration:none;}
+#Validform_msg a.Validform_close:hover{color:#cc0;}
+#Validform_msg .Validform_info{padding:8px;border:1px solid #000; border-top:none; text-align:left;}
+.jqTransformInputWrapper{float:left;}
+
+/*密码强弱检测*/
+.passwordStrength{
+	
+}
+.passwordStrength b{
+	font-weight:normal;
+}
+.pwstr{ height:40px; width:178px; float:left; margin-left:10px; display:none;}
+.pwstr .Validform_right{ line-height:25px; font-size:12px;}
+.passwordStrength b,.passwordStrength span{
+	display:inline-block; 
+	vertical-align:middle;
+	line-height:6px;
+	line-height:8px\9;
+	height:6px;
+}
+.passwordStrength span{
+	width:20px; 
+	padding-left:50px;
+	text-align:center;
+	background:url(../images/ucenter-ico.png) no-repeat -1px -144px;
+	border-right:1px solid #fff;
+}
+.passwordStrength .mid{ background-position:-1px -157px;}
+.passwordStrength .last{
+	border-right:none;
+	background-position:-1px -170px;
+}
+.passwordStrength .bgStrength{
+	color:#fff;
+	background-color:#71b83d;
+}

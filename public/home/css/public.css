@@ -1,0 +1,150 @@
+﻿.header{
+    max-width: 2000px;
+    height: 100px;
+    margin: 0 auto;
+}
+.header .container{
+    padding: 22px 0 22px 0;
+    margin: 0 148px 0 110px;
+    border-bottom: 1px solid #e3e3e3;
+    box-sizing:border-box;
+}
+.header .content{
+    /*width: 100%;*/
+    /*height: 100%;*/
+    position: relative;
+}
+.header .content .logo{
+    width: 123px;
+    height: 47px;
+}
+.header .content .logo img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.header .content .title{
+    font-size: 18px;
+    color: #999999;
+    position: absolute;
+    bottom: 0;
+    left: 166px;
+}
+.main{
+    max-width: 2000px;
+    height: 365px;
+    background: url(../images/ji_pc_bg.jpg) no-repeat;
+    /*background-size: 100% 100%;*/
+    margin: 40px  auto 0 auto;
+    text-align: center;
+}
+.main .cover{
+    /*padding-left:120px;*/
+}
+.main .main-content{
+    width: 940px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+.main-content .phone-bg{
+    padding-top: 38px;
+    width: 285px;
+    height: 335px;
+}
+.main-content .phone-bg img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.main-content .main-right{
+    width: 495px;
+    background: #ffffff;
+    height: 365px;
+    padding: 0 70px 0 60px;
+    box-sizing: border-box;
+    position: relative;
+}
+.main-content .hintMsg{
+    width: 100%;
+    height: 22px;
+    text-align: left;
+    color: #fa5b5b;
+}
+.main-right .inputGroup{
+    padding-bottom: 10px;
+}
+.main-right .inputGroup .inputItem{
+    width: 100%;
+    background: url(../images/phone.png) no-repeat;
+    padding: 10px 0 10px 50px;
+    background-position: center left;
+    border: 1px solid #bbbbbb;
+    font-size:16px;
+    /*color: #bbbbbb ;*/
+    height: 42px;
+    box-sizing: border-box;
+    -webkit-transition: all 0.3s;
+    -moz-transition:  all 0.3s;
+    -ms-transition:  all 0.3s;
+    -o-transition:  all 0.3s;
+    transition:  all 0.3s;
+}
+.main-right .inputGroup .inputItem:focus {
+    border-color: #f8d709;
+    outline: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition:  all 0.3s;
+    -ms-transition:  all 0.3s;
+    -o-transition:  all 0.3s;
+    transition:  all 0.3s;
+}
+.main-right .inputGroup .upwd{
+    background: url(../images/password.png) no-repeat;
+    background-position: center left;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #bbbbbb;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #bbbbbb;
+}
+
+input:-ms-input-placeholder{
+    color: #bbbbbb;
+}
+
+input::-webkit-input-placeholder{
+    color: #bbbbbb;
+}
+.main-right .inputState{
+    width: 100%;
+    text-align: left;
+}
+.main-right .inputState span{
+    font-size: 14px;
+    color: #bbbbbb;
+}
+.main-right .inputState span a{
+    color: #75abf5;
+}
+.main-right .btn{
+    display: block;
+    margin: 20px 0;
+    width: 100%;
+    height: 43px;
+    background: #f8d709;
+    color: #ffffff;
+    text-align: center;
+    line-height: 43px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.footer{
+    padding-top: 40px;
+    width: 100%;
+    text-align: center;
+    color: #bbbbbb;
+    font-size: 12px;
+    line-height: 18px;
+}

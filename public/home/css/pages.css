@@ -1,0 +1,28 @@
+#pages{
+	position: relative;
+	float: right;
+}
+#pages li{
+	position: relative;
+    float: left;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+#pages li a{
+	color:#337ab7;;
+}
+#pages .active{
+	background: #99CCFF;
+	color: #999999;
+
+}
+
+#pages .disabled{
+	color: #666666;
+    cursor: default;
+}

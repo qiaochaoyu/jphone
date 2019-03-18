@@ -1,0 +1,42 @@
+.pagination>li>a{
+    float: left;
+    display:block;
+    width: 26px;
+    margin-left: 5px;
+    padding: 0;
+    height: 26px;
+    line-height: 26px;
+    color: #999999;
+    border: 0;
+    font-size: 14px;
+    border-radius: 2px;
+    box-shadow: none;
+    text-align: center;
+    font-family: "Helvetica Neue",Arial,"Hiragino Sans GB","STHeiti","Microsoft Yahei","SimSun","WenQuanYi Micro Hei",sans-serif;
+    cursor: pointer;
+    overflow: hidden;
+    background: none;
+
+}
+.pagination>li.active{
+	font-weight: 400;
+    color: #FFFFFF;
+    background-color: #1499f8;
+    float: left;
+    width: 26px;
+    margin-left: 5px;
+    padding: 0;
+    height: 26px;
+    line-height: 26px;
+    color: #999999;
+    border: 0;
+    font-size: 14px;
+    border-radius: 2px;
+    box-shadow: none;
+    text-align: center;
+    font-family: "Helvetica Neue",Arial,"Hiragino Sans GB","STHeiti","Microsoft Yahei","SimSun","WenQuanYi Micro Hei",sans-serif;
+    cursor: pointer;
+    overflow: hidden;
+    background: #2DE3E1;
+    display:inline-block;
+}
