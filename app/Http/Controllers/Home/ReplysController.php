@@ -36,38 +36,35 @@ class ReplysController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return [重定向到当前页面] [添加回帖]
      */
     public function store(Request $request)
     {
-        //接收表单数据
+        // 接收表单数据
         $data = $request->except('_token');
-        //去除字符串的html标签
-        
-        
-        //开启事务
+        // 开启事务
         DB::beginTransaction();
-        //创建数据模型对象
+        // 创建数据模型对象
         $replys = new Replys;
-        //赋值
+        // 赋值
         $replys -> uid = session('homeuser')->id;
         $replys -> tid = $data['tid'];
         $replys -> rcontent = $data['rcontent'];
         $res1 =  $replys -> save();
-        //查找发帖用户
+        // 查找发帖用户
         $users = Users::find(session('homeuser')->id);
-        //回帖用户金币加1
+        // 回帖用户金币加1
         $users->ascore ++;
         $res2 = $users-> save();
 
 
-        //获取主贴信息
+        // 获取主贴信息
         $topics = Topics::find($data['tid']);
-        //主贴回帖数量加1
+        // 主贴回帖数量加1
         $topics -> recount ++;
-        //更新主贴回复时间
+        // 更新主贴回复时间
         $topics -> last_replys_at = date('Y-m-d H:i:s',time());
-        //更新主贴最后回帖人id
+        // 更新主贴最后回帖人id
         $topics -> last_replys_uid = session('homeuser')->id;
         $res3 = $topics -> save();
         if($res1 && $res2 && $res3){

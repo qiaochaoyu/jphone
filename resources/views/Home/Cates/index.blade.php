@@ -192,7 +192,7 @@
                   <div class="portal_block_summary">
                     <div class="itofeedback cl">
                       <a class="bluebigbutton"  href="/topicsmodal" title="发帖">发帖</a>
-                      <a href="/signin" target="_self" class="greenbigbutton" title="签到" style="margin-right: 0;">签到</a></div>
+                      <a href="/signin/create" target="_self" class="greenbigbutton" title="签到" style="margin-right: 0;">签到</a></div>
                   </div>
                 </div>
               </div>

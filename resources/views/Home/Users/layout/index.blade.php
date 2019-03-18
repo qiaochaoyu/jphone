@@ -21,7 +21,7 @@
 
   <ul id="scbar_type_menu" class="p_pop" style="display: none;">
    <li><a href="javascript:;" rel="forum" class="curtype">帖子</a></li>
-   <li><a href="javascript:;" rel="user">用户</a></li>
+   <li><a href="javascript:;" rel="user">用户</a></li> 
   </ul> 
   <script type="text/javascript">
 initSearchmenu('scbar', '');

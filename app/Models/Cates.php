@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\topics;
 use App\Models\Users;
 use App\Models\Replys;
 
 class Cates extends Model
 {
+    use SoftDeletes;
    //设置分类表
     public $table = "cates";
     public function topics()
@@ -17,7 +19,7 @@ class Cates extends Model
     }
     /**
      * [last_topics description]
-     * @param  []  
+     * @param  []
      * @return [array]     [返回该版块下最后一个发表的帖子和发帖人]
      */
     public function last_topics()

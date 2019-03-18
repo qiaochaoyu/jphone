@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cates;
 use DB;
+use App\Models\Topics;
 
 class CatesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 显示版块列表.
      *
      * @return \Illuminate\Http\Response
      */
@@ -51,12 +52,12 @@ class CatesController extends Controller
     {
         // 对表单数据进行限定
         $this->validate($request, [
-        'cname' => 'required',
-        'profile' => 'required',
-    ],[
-        'cname.required' => '版块名称不能为空',
-        'profile.required' => '版块图标不能为空',
-    ]);
+            'cname' => 'required',
+            'profile' => 'required',
+        ],[
+            'cname.required' => '版块名称不能为空',
+            'profile.required' => '版块图标不能为空',
+        ]);
          // 接收表单数据
         $data = $request->except('_token');
         // 接受上传图片
@@ -82,7 +83,9 @@ class CatesController extends Controller
         $cates -> pid = $data['pid'];
         $cates -> path = $data['path'];
         $cates -> profile = $file_name;
+        // 执行添加
         $res = $cates -> save();
+        // 根据添加结果跳转到指定路由
         if($res){
             return redirect('/admin/cates')->with('success','添加成功');
         } else {
@@ -136,20 +139,36 @@ class CatesController extends Controller
             return redirect($_SERVER['HTTP_REFERER'])->with('error','该分类下有子分类，不允许删除');
         } else {
             // 开启事务
+             DB::beginTransaction();
             // 获取需要删除的版块
             $cates = Cates::find($id);
-            DB::beginTransaction();
             // 执行删除操作
-            $res2 = Cates::destroy($id);
-            // 删除版块的缩略图
-            $res1 = unlink("upload/images/".($cates->profile));
-            if($res1 && $res2){
+            $res = Cates::destroy($id);
+            // 判断当前版块下是否有帖子
+            $res3 = Topics::where('cid',$id) -> first();
+            // 如果版块下有帖子则回滚事务，不允许删除
+            if($res3){
+                DB::rollBack();
+                return redirect($_SERVER['HTTP_REFERER']) -> with('error','该版块下有帖子，不允许删除！');
+            }
+            // 判断当前版块下是否有有子版块
+            $res4 = Cates::where('pid',$id) -> first();
+            // 如果版块下有子版块则回滚事务，不允许删除
+            if($res4){
+                DB::rollBack();
+                return redirect($_SERVER['HTTP_REFERER']) -> with('error','该版块下子版块，不允许删除！');
+            }
+
+            if($res){
+                // 删除版块缩略图
+                unlink("upload/images/".($cates->profile));
+                // 提交事务
                 DB::commit();
             } else {
                 DB::rollBack();
-                return redirect($_SERVER['HTTP_REFERER'])->with('error','删除失败');
+                return redirect($_SERVER['HTTP_REFERER']) -> with('error','删除失败');
             }
-            return redirect($_SERVER['HTTP_REFERER'])->with('success','删除分类成功');
+            return redirect($_SERVER['HTTP_REFERER']) -> with('success','删除分类成功');
         }
     }
 

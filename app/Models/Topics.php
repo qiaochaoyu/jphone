@@ -27,17 +27,20 @@ class Topics extends Model
     {
         return $this->belongsToMany('App\Models\Users','collections','tid','uid');
     }
+    /**
+    * 获取帖子的最后一个回帖
+    * @param int $id 帖子id
+    * @return 最后一个回帖的详细信息
+    */
     public function get_last_replys($id)
     {
         $arr = [];
         $replys = Replys::where('tid',$id)->orderBy('created_at','desc')->first();
         $time = $replys['created_at'];
         $user = Users::where('id',$replys['uid'])->first();
-        // $user = Users::find($replys['uid']);
         $user_name = $user['nickname'];
         $arr['time'] = $time;
         $arr['user_name'] = $user_name;
-        
         return $arr;
     }
 }

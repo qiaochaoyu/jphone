@@ -12,30 +12,31 @@ use App\Models\Announcements;
 class CatesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 显示板块列表
      *
      * @return \Illuminate\Http\Response
      */
     public function index($id)
     {
-        //将当前页面压入session
+        // 将当前页面压入session
         session(['url'=>$_SERVER["REQUEST_URI"]]);
-        //获取版块名称
+        // 获取版块名称
         $cname = Cates::find($id)->cname;
-        //获取该版块下的子版块
+        // 获取该版块下的子版块
         $data = Cates::where('pid',$id)->get();
-        //获取子版块的id
+        // 获取子版块的id
         $ids = [];
         foreach($data as $k=>$v){
             $ids[] = $v->id;
         }
-        //获取排行帖子
+        // 获取排行帖子
         $topics_top = Topics::whereIn('cid',$ids)->orderBy('recount','desc')->orderBy('count','desc')->limit(8)->get();
         // dd($topics_top);
-        //获取轮播图
+        // 获取轮播图
         $slides = Slides::orderBy('created_at','desc')->limit(5)->get();
-        //获取公告
+        // 获取公告
         $announcements = Announcements::orderBy('created_at','desc')->limit(5)->get();
+        // 加载页面并分配数据
         return view('Home.Cates.index',['announcements'=>$announcements,'topics_top'=>$topics_top,'slides'=>$slides,'data'=>$data,'cname'=>$cname]);
     }
 
@@ -104,8 +105,16 @@ class CatesController extends Controller
     {
         //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id  获取版块
+     * @return \Illuminate\Http\Response
+     */
     public static function getCates($id=0)
     {
+        // 获取版块
         $cates = Cates::where('pid',$id)->get();
         $arr = [];
         foreach($cates as $k=>$v){

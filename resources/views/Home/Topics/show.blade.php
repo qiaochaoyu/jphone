@@ -389,6 +389,12 @@
                                     });
                                     //回帖提交
                                     function replys_submit(){
+                                        //获取提交的数据
+                                        var content = document.getElementById('container').value;
+                                        if(!content){
+                                          alert('回帖内容不能为空！');
+                                          return false;
+                                        }
                                         $("#replys_form").submit();
                                     }
                                 </script>
@@ -403,7 +409,7 @@
                       </div>
                     </div>
                     <div class="pnpost cl" style="padding-top: 10px;" @if(!session('homeuser')) hidden @endif>
-                      <button  onclick="replys_submit()"  class="pn pnc vm" tabindex="5" style="float: right; padding: 0; height: 35px; line-height: 35px;">
+                      <button  onclick=" return replys_submit()"  class="pn pnc vm" tabindex="5" style="float: right; padding: 0; height: 35px; line-height: 35px;">
                         <strong style="padding: 0 15px; font-size: 14px; font-weight: bold;">发表回复</strong>
                       </button>
                       <em style="float: right; margin: 2px 0 0 0;"></em>
