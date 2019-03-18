@@ -11,23 +11,23 @@ class WebsetController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * 显示网站设置
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {   
         // 分页设置
-        
         $count = $request->input('count',5);
+        // 搜索功能
         $search = $request->input('search','');
         $data = Websets::where('wname','like','%'.$search.'%')->paginate($count); 
-        // 加载视图
+        // 加载视图 分配数据
         return view('Admin.Webset.index',['data'=>$data,'request'=>$request->all()]);
     }
 
     /**
      * Show the form for creating a new resource.
-     *
+     * 加载添加页面
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -38,7 +38,7 @@ class WebsetController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * 添加网站设置
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -55,13 +55,13 @@ class WebsetController extends Controller
             $ext = $file->extension();
             // 拼接名称
             $file_name = time()+rand(1000,9999).'.'.$ext;
-            
             // 执行文件上传 并且指定文件名称
             $res = $file->storeAs('images',$file_name);
             // dump($res);
             // 接收表单数据
             $data = $request->except(['_token']);
             // dump($data);
+            // 把数据保存到数据库
             $websets = new Websets;
             $websets->wname = $data['wname'];
             $websets->wdescribe = $data['wdescribe'];
@@ -71,6 +71,7 @@ class WebsetController extends Controller
             $websets->wcright = $data['wcright'];
             $websets->wlogo = $res;
             $res = $websets->save();
+            // 判断结果
             if ($res) {
                 return redirect('admin/webset')->with('success','添加成功');
             } else {
@@ -83,21 +84,22 @@ class WebsetController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * 分配数据到show页面
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request,$id)
     {
-
+        // 获取数据
         $webs =  Websets::find($id);
+        // 加载视图 分配数据
         return view('Admin.Webset.show',['webs'=>$webs]);
         
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
+     * 分配数据到修改页面
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -105,7 +107,7 @@ class WebsetController extends Controller
     {
         // 获取数据
         $data =  Websets::find($id);
-        // 加载模板
+        // 加载模板 分配数据
         return view('Admin.Webset.edit',['data'=>$data]); 
         
         
@@ -113,7 +115,7 @@ class WebsetController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * 修改网站设置
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -122,8 +124,9 @@ class WebsetController extends Controller
     {
         // 接受数据
         $data1 = Websets::find($id);
+        // 获取旧的图片路径
         $filepath = 'upload/'.$data1->wlogo;
-        
+        // 把数据保存到数据库
         $data = Websets::find($id);
         $data->wname = $request->input('wname','');
         $data->wdescribe = $request->input('wdescribe','');
@@ -140,14 +143,14 @@ class WebsetController extends Controller
             $ext = $file->extension();
             // 拼接名称
             $file_name = time()+rand(1000,9999).'.'.$ext;
-            
             // 执行文件上传 并且指定文件名称
             $res = $file->storeAs('images',$file_name);
             $data->wlogo = $res;
-            
+            // 删除旧的数据
             $res1 = unlink($filepath); 
         }
-        $res = $data->save();                        
+        $res = $data->save();
+        // 判断结果                      
         if ($res) {
                 return redirect('admin/webset')->with('success','修改成功');
             } else {
@@ -171,6 +174,7 @@ class WebsetController extends Controller
      */
     static public function webset()
     {
+        // 获取数据
         $webset = Websets::first();
         return $webset;
     }
