@@ -13,7 +13,7 @@
          <ul class="cl bbda pbm mbm" style="font-size: 14px; margin-left: -10px;"> 
           <li> 
            <div style="display: inline-block; padding: 16px 15px; border: 1px solid #EEEEEE; background: #FAFAFA;"> 
-            <a href="javascript:;" target="_blank">好友数 0</a> 
+            <a href="javascript:;" target="_blank">好友数 {{ $user_count }}</a> 
             <span class="pipe" style="margin: 0 15px;">|</span> 
             <a href="javascript:;" target="_blank">回帖数 {{ $replys_count }} </a> 
             <span class="pipe" style="margin: 0 15px;">|</span> 

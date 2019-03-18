@@ -17,16 +17,17 @@ class UserController extends Controller
 {
 
     /**
-     *
+     *  判断当前用户是否关注此用户
      */
     public static function getData($id)
     {
-        //查询关注表和粉丝表 判断
+        // 查询关注表和粉丝表 判断当前用户是否关注此用户
         $follows = Follows::where('uid',session('homeuser')['id'])->where('foid',$id)->get();
-        //获取用户的信息
+        // 获取用户的信息
         $user_data = Users::find($id);
+        // 把查询到的信息存到数组
         $arr = [$follows,$user_data];
-        //dump($arr);
+        // 返回数据
         return $arr;
     }
 
@@ -39,12 +40,15 @@ class UserController extends Controller
     {
         // 查询用户的帖子主题数
         $topics_count = Topics::where('uid',$id)->select('cid')->count();
+        // 查询用户的关注数
+        $user_count = Follows::where('uid',$id)->count();
         // 查询用户的回帖数
         $replys_count = Replys::where('uid',$id)->count(); 
         // 查询用户最后发表时间
         $top_id = Topics::where('uid',$id)->max('id');
         $top_time = Topics::where('id',$top_id)->first();
-        return view('Home.Users.index',['id'=>$id,'follows'=>self::getData($id)[0],'user_data'=>self::getData($id)[1],'topics_count'=>$topics_count,'replys_count'=>$replys_count,'index'=>0,'top_time'=>$top_time]);
+        // 加载个人空间页面 分配数据
+        return view('Home.Users.index',['id'=>$id,'follows'=>self::getData($id)[0],'user_data'=>self::getData($id)[1],'topics_count'=>$topics_count,'replys_count'=>$replys_count,'index'=>0,'top_time'=>$top_time,'user_count'=>$user_count]);
     }
 
     /**
@@ -56,7 +60,7 @@ class UserController extends Controller
     {
         // 获取用户的帖子数据
         $topics_data = Topics::where('uid',$id)->orderBy('updated_at','desc')->paginate(6);
-        //遍历该主题下面的该用户的帖子
+        // 遍历该主题下面的该用户的帖子
         foreach ($topics_data as $key => $value) {
             $value['cate'] = Cates::where('id',$value->cid)->get();
         }
@@ -72,15 +76,19 @@ class UserController extends Controller
     {
         // 该用户的回复数据
         $replys_data = Replys::where('uid',$id)->orderBy('updated_at','desc')->paginate(6);
+       
+        //dd($replys_data);
         // 遍历数据  获取 该用户回复的帖子和主题数据
         foreach ($replys_data as $k => $v)
-        {
+        {   
+            
             $v['top'] = Topics::where('id',$v->tid)->get();
             foreach ($v['top'] as $kk => $vv)
             {
                 $vv['cate'] = Cates::where('id',$vv->cid)->get();
             }
         }
+        // 加载模板  分配数据
         return view('Home.Users.replys',['id'=>$id,'follows'=>self::getData($id)[0],'user_data'=>self::getData($id)[1],'replys_data'=>$replys_data,'index'=>1]);
     }
 
@@ -95,21 +103,25 @@ class UserController extends Controller
         // 获取用户收藏的帖子
         foreach ($collection_data as $k => $v)
         {
-            // 获取帖子的详细信息
+            // 获取用户收藏帖子的详细信息
             $v['top'] = Topics::where('id',$v->tid)->get();
             foreach ($v['top'] as $kk => $vv)
-            {
+            {   
+                // 获取该帖子的用户信息
                 $vv['user'] = Users::where('id',$vv->uid)->get();
+                // 获取该帖子的主题分类
                 $vv['cate'] = Cates::where('id',$vv->cid)->get();
+                // 获取该帖子的收藏数
                 $vv['count'] = Collections::where('tid',$vv->id)->count();
             }
         }
+        // 加载模板 分配数据
         return view('Home.Users.collections',['id'=>$id,'follows'=>self::getData($id)[0],'user_data'=>self::getData($id)[1],'collection_data'=>$collection_data,'index'=>2]);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
+     * 执行删除我的帖子操作
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -121,21 +133,20 @@ class UserController extends Controller
         $topics = Topics::withTrashed()->find($id);
         // 执行彻底删除操作
         $res1 = $topics -> forceDelete();
-
         // 查询主贴对应的回帖是否为空
         $data = Replys::withTrashed()
                 ->where('tid', $id)
                 ->first();
         // 判断回帖是否为空，如果回帖为空，则为$res2和$res3赋默认值，否则执行删除操作
-        if(empty($data)){
+        if (empty($data)) {
             $res2 = true;
             $res3 = true;
         } else {
              $res2 = $data -> forceDelete();
-             //根据条件查找跟帖
+             // 根据条件查找跟帖
              $data = Answers::withTrashed()->where('tid',$id)->first();
-             //判断跟帖是否为空，如果跟帖为空，则为$res3赋默认值，否则执行删除操作
-             if(empty($data)){
+             // 判断跟帖是否为空，如果跟帖为空，则为$res3赋默认值，否则执行删除操作
+            if (empty($data)) {
                 $res3 = true;
             } else {
                  $res3 = Answers::withTrashed()
@@ -145,14 +156,14 @@ class UserController extends Controller
         }
         // 在软删除中根据条件查找收藏
         $data = Collections::withTrashed()->where('tid',$id)->first();
-        // 判断帖子是否被收藏,若被被收藏则彻底收藏记录
-        if($data){
+        // 判断帖子是否被收藏,若被收藏则彻底删除收藏记录
+        if ($data) {
             $res4 = Collections::withTrashed()->where('tid',$id)->forceDelete();
         } else {
             $res4 = true;
         }
 
-        if($res1 && $res2 && $res3 && $res4){
+        if ($res1 && $res2 && $res3 && $res4) {
             DB::commit();
             return redirect($_SERVER['HTTP_REFERER'])->with('success','删除成功');
         } else {
@@ -162,12 +173,13 @@ class UserController extends Controller
     }
 
     /**
-     * 取消收藏
+     * 取消我的收藏
      */
     public function remove($id)
-    {
+    {   
+        // 删除当前用户收藏的帖子id
         $res = Collections::where('id',$id)->forceDelete($id);
-
+        // 判断是否取消成功
         if ($res) {
             echo '<script>alert("取消收藏成功~")</script>';
             return back();
@@ -184,12 +196,13 @@ class UserController extends Controller
      */
     public function follows($id)
     {   
-
+        // 查询当前用户的关注用户 
         $follows_data = Follows::where('uid',$id)->orderBy('updated_at','desc')->paginate(10);
+        // 遍历显示关注用户
         foreach ($follows_data as $key => $value) {
             $value['user'] = Users::where('id',$value->foid)->get();
         }
-
+        // 加载模板 分配数据
         return view('Home.Users.follows',['id'=>$id,'follows'=>self::getData($id)[0],'user_data'=>self::getData($id)[1],'follows_data'=>$follows_data,'index'=>3]);
     }
 
@@ -197,7 +210,8 @@ class UserController extends Controller
      * 取消关注
      */
     public function unfollows($id)
-    {
+    {   
+        // 删除关注用户的数据
         $res = Follows::where('foid',$id)->delete();
         if ($res) {
             return back()->with('success','取消关注成功');
@@ -210,12 +224,14 @@ class UserController extends Controller
      * 我的粉丝
      */
     public function fans($id)
-    {
+    {   
+        // 获取当前用户的粉丝用户数据
         $fans_data = Fans::where('uid',$id)->orderBy('updated_at','desc')->paginate(10);
+        // 遍历显示当前用户的粉丝用户
         foreach ($fans_data as $key => $value) {
             $value['user'] = Users::where('id',$value->faid)->get();
         }
-
+        // 加载模板 分配数据
         return view('Home.Users.fans',['id'=>$id,'follows'=>self::getData($id)[0],'user_data'=>self::getData($id)[1],'fans_data'=>$fans_data,'index'=>3]);
     }
 
@@ -226,21 +242,23 @@ class UserController extends Controller
     public function addfollow($id)
     {
 
-        //判断是否登录
-        if(!session('homeuser')){
+        // 判断是否登录
+        if (!session('homeuser')) {
             echo '<script>alert("请先去登录!");location.href="/home/login";</script>';
         }
-
+        // 实例化关注对象
         $follow = new Follows;
-        $follow->uid = session('homeuser')['id'];
+        // 添加关注用户到数据库
+        $follow->uid  = session('homeuser')['id'];
         $follow->foid = $id;
         $res1 = $follow->save();
-
+        // 实例化粉丝对象
         $fans = new Fans;
-        $fans->uid = $id;
+        // 添加粉丝用户的数据库
+        $fans->uid  = $id;
         $fans->faid = session('homeuser')['id'];
         $res2 = $fans->save();
-
+        // 判断是否关注成功
         if ($res1 && $res2) {
             return back()->with('success','关注成功~');
         } else {
@@ -318,8 +336,9 @@ class UserController extends Controller
      */
     public  function addcollection($uid,$tid)
     {
-        // 加收藏
+        // 实例化收藏对象
         $collection = new Collections;
+        // 添加收藏帖子信息到数据库
         $collection->uid = $uid;
         $collection->tid = $tid;
         $res = $collection->save();

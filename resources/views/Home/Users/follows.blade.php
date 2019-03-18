@@ -42,7 +42,7 @@
   <td class="by">
     <!-- <p style="width: 6px;height: 30px; border: 1px solid #ddd;"> -->
       <div style="width: 60px;height: 20px; border: 1px solid #ddd;margin-left: 30px;padding: 6px 6px;text-align: center;line-height: 20px;background-color: #FFCC99;border-radius: 8px;">
-        <a onclick="confirm('您确定要取消关注吗?')" href="/users/unfollows/{{ $vv->id }}"><font  color="#555"><b>取消关注</b></font></a>
+        <a href="javascript:;" onclick="quxiao({{ $vv->id }})"><font  color="#555"><b>取消关注</b></font></a>
       </div>
     <!-- </p> -->
   </td>
@@ -78,4 +78,14 @@ window.location.href = 'home.php?mod=space&uid=450096&do=thread&view=me&order=da
 </div>
 </div> 
 
+<script type="text/javascript">
+    function quxiao(id)
+    {
+            if(confirm("你确定要取消关注吗？")){
+                if({{ $vv->id }}) {
+                window.location.href = "/users/unfollows/".id;
+                }
+            }
+    }
+</script>
 @endsection

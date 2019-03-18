@@ -7,7 +7,10 @@ use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
-    // 后台首页
+    /**
+     * 加载后台首页页面
+     * @return [type] [description]
+     */
     public function index()
     {
     	return view('Admin.Index.index');

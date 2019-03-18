@@ -36,7 +36,7 @@ class UserStoreRequest extends FormRequest
             'phone'     =>  'required|regex:/^1{1}[3-9]{1}[\d]{9}$/',
             'email'     =>  'required',
             'face'      =>  'required',
-            'ascore'    =>  'required|regex:/^[\d]{1,10}$/',
+
 
         ];
     }
@@ -57,8 +57,7 @@ class UserStoreRequest extends FormRequest
             'phone.regex'       => '手机号格式不正确',
             'email.required'    => '邮箱必填',
             'face.required'     => '头像必填',
-            'ascore.required'   => '积分必填',
-            'ascore.regex'      => '积分格式不正确',
+            
         ];
 
 

@@ -52,7 +52,7 @@
 	<td class="by">
 		<!-- <p style="width: 6px;height: 30px; border: 1px solid #ddd;"> -->
 			<div style="width: 40px;height: 20px; border: 1px solid #ddd;margin-left: 50px;padding: 6px 6px;text-align: center;line-height: 20px;background-color: #FFCC99;border-radius: 8px;">
-				<a onclick="confirm('您确定要删除吗?')" href="/users/destroy/{{ $v->id }}"><font  color="#555"><b>删&nbsp;除</b></font></a>
+				<a href="javascript:;" onclick="del({{ $v->id }})"><font  color="#555"><b>删&nbsp;除</b></font></a>
 			</div>
 		<!-- </p> -->
 	</td>
@@ -88,4 +88,13 @@ window.location.href = 'home.php?mod=space&uid=450096&do=thread&view=me&order=da
 </div>
 </div>
 
+<script type="text/javascript">
+    function del(id)
+    {
+            if(confirm("您确定要删除吗？")){
+                
+                window.location.href = "/users/destroy/".id;
+            }
+    }
+</script>
 @endsection

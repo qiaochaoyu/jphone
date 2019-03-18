@@ -37,47 +37,47 @@
            <img width="32" height="32" id="emot_1" src="/home/picture/1.jpg" title="" alt="" />
        </div>
     </li>
-    <li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==1?this.className:''" onclick="check(this, 2)" class="">
+    <li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==2?this.className:''" onclick="check(this, 2)" class="">
       <div class="dcsignin2">
            <img width="32" height="32" id="emot_1" src="/home/picture/2.jpg" title="" alt="" />
        </div>
     </li>
-    <li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==1?this.className:''" onclick="check(this, 3)" class="">
+    <li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==3?this.className:''" onclick="check(this, 3)" class="">
       <div class="dcsignin2">
            <img width="32" height="32" id="emot_1" src="/home/picture/3.jpg" title="" alt="" />
        </div>
     </li>
-    <li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==1?this.className:''" onclick="check(this, 4)" class="">
+    <li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==4?this.className:''" onclick="check(this, 4)" class="">
       <div class="dcsignin2">
            <img width="32" height="32" id="emot_1" src="/home/picture/4.jpg" title="" alt="" />
        </div>
     </li>
-    <li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==1?this.className:''" onclick="check(this, 5)" class="">
+    <li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==5?this.className:''" onclick="check(this, 5)" class="">
       <div class="dcsignin2">
            <img width="32" height="32" id="emot_1" src="/home/picture/5.jpg" title="" alt="" />
        </div>
     </li>
-    <li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==1?this.className:''" onclick="check(this, 6)" class="">
+    <li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==6?this.className:''" onclick="check(this, 6)" class="">
       <div class="dcsignin2">
            <img width="32" height="32" id="emot_1" src="/home/picture/6.jpg" title="" alt="" />
        </div>
     </li>
-    <li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==1?this.className:''" onclick="check(this, 7)" class="">
+    <li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==7?this.className:''" onclick="check(this, 7)" class="">
       <div class="dcsignin2">
            <img width="32" height="32" id="emot_1" src="/home/picture/7.jpg" title="" alt="" />
        </div>
     </li>
-    <li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==1?this.className:''" onclick="check(this, 8)" class="">
+    <li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==8?this.className:''" onclick="check(this, 8)" class="current">
       <div class="dcsignin2">
            <img width="32" height="32" id="emot_1" src="/home/picture/8.jpg" title="" alt="" />
        </div>
     </li>
-	<li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==1?this.className:''" onclick="check(this, 9)" class="">
+	<li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==9?this.className:''" onclick="check(this, 9)" class="current">
       <div class="dcsignin2">
            <img width="32" height="32" id="emot_1" src="/home/picture/9.jpg" title="" alt="" />
        </div>
     </li>
-    <li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==1?this.className:''" onclick="check(this, 10)" class="">
+    <li onmouseover="this.className='current'" onmouseout="this.className=$('emotid').value==10?this.className:''" onclick="check(this, 10)" class="current">
       <div class="dcsignin2">
            <img width="32" height="32" id="emot_1" src="/home/picture/10.jpg" title="" alt="" />
        </div>
